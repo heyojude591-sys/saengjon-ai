@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>생존AI · 첫 육아 부모님을 위한 생존 도구 (운영 연습용)</title>
+<meta name="description" content="0~24개월 아이를 처음 키우는 보호자를 위한 브랜드 생존AI. 본 사이트는 운영 연습용이며 실제 판매하지 않습니다.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  /* 색상: 브랜드기준 v1.0. 보조 글자는 접근성 보정으로 #5A606B */
+  :root{
+    --green:#3F8F6B;
+    --navy:#23314F;
+    --cream:#FFF8EC;
+    --coral:#F28C6B;
+    --sub:#5A606B;
+    --card:rgba(255,255,255,.8);
+    --radius:20px;
+    --gap:16px;
+    --shadow:0 8px 24px rgba(35,49,79,.06);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    margin:0;
+    font-family:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    background:var(--cream);
+    color:var(--navy);
+    line-height:1.7;
+    font-size:16px;
+    word-break:keep-all;
+  }
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--navy);outline-offset:3px;border-radius:6px}
+
+  .skip{
+    position:absolute;left:12px;top:-60px;
+    background:var(--navy);color:var(--cream);
+    padding:10px 16px;border-radius:10px;z-index:20;text-decoration:none;font-weight:600;
+  }
+  .skip:focus{top:12px}
+
+  header.top{
+    max-width:1120px;margin:0 auto;padding:16px 20px 0;
+    display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;
+  }
+  .logo{font-weight:800;font-size:1.15rem;letter-spacing:-.02em;text-decoration:none}
+  .logo span{color:var(--green)}
+  nav ul{list-style:none;margin:0;padding:0;display:flex;gap:4px;flex-wrap:wrap}
+  nav a{display:inline-block;padding:8px 12px;border-radius:999px;text-decoration:none;font-weight:600;font-size:.95rem}
+  nav a:hover{background:rgba(63,143,107,.14)}
+
+  main{max-width:1120px;margin:0 auto;padding:0 20px 48px}
+
+  /* 히어로: 사진 없이 큰 타이포 + CSS 도형 */
+  .hero{
+    position:relative;overflow:hidden;
+    padding:56px 0 40px;
+  }
+  .hero::before,.hero::after{
+    content:"";position:absolute;border-radius:50%;z-index:-1;
+  }
+  .hero::before{width:320px;height:320px;right:-90px;top:-40px;background:rgba(63,143,107,.16)}
+  .hero::after{width:120px;height:120px;right:150px;top:210px;background:rgba(242,140,107,.28)}
+  .eyebrow{
+    display:inline-block;font-size:.85rem;font-weight:600;color:var(--sub);
+    border:1px solid rgba(35,49,79,.2);border-radius:999px;padding:2px 12px;margin:0 0 16px;
+  }
+  .hero h1{
+    margin:0;font-weight:900;letter-spacing:-.04em;line-height:1.05;
+    font-size:clamp(3.6rem,17vw,8.5rem);
+  }
+  .hero h1 span{color:var(--green)}
+  .def{
+    margin:20px 0 0;font-weight:700;letter-spacing:-.02em;line-height:1.4;
+    font-size:clamp(1.25rem,4.4vw,2rem);max-width:22em;
+  }
+  .lead{margin:14px 0 0;color:var(--sub);font-size:1.05rem;max-width:34em}
+  .btn-link{
+    display:inline-block;margin-top:24px;padding:14px 26px;border-radius:999px;
+    background:var(--navy);color:var(--cream);text-decoration:none;font-weight:700;
+  }
+  .btn-link:hover{background:#1a253c}
+
+  /* 벤토 그리드: 모바일 1열, 넓은 화면 12열 */
+  .bento{display:grid;grid-template-columns:1fr;gap:var(--gap)}
+  .card{
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:24px;
+    border:1px solid rgba(35,49,79,.06);
+  }
+  .card h2,.card h3{margin:0 0 10px;letter-spacing:-.02em;line-height:1.3}
+  .card h2{font-size:1.5rem}
+  .card p{margin:0 0 12px}
+  .note{color:var(--sub);font-size:.9rem}
+  .bar{display:block;width:44px;height:6px;border-radius:999px;background:var(--green);margin-bottom:14px}
+
+  .intro{padding:32px 24px}
+
+  .badge{
+    display:inline-block;font-size:.8rem;font-weight:700;line-height:1;
+    padding:7px 12px;border-radius:999px;margin-bottom:12px;
+  }
+  .badge.fake{background:var(--coral);color:var(--navy)}
+  .badge.soon{background:#E9ECEF;color:var(--sub);margin:0}
+
+  .section-head{margin:40px 0 4px}
+  .section-head h2{margin:0;font-size:1.6rem;letter-spacing:-.02em}
+  .section-head p{margin:4px 0 12px;color:var(--sub)}
+
+  .product h3{font-size:1.2rem}
+  .product dl{margin:12px 0 16px}
+  .product dt{font-size:.85rem;font-weight:700;color:var(--sub);margin-top:12px}
+  .product dd{margin:2px 0 0}
+  .btn-off{
+    width:100%;padding:12px;border-radius:999px;border:1px dashed rgba(35,49,79,.35);
+    background:#EEF0F2;color:var(--sub);font:inherit;font-weight:700;cursor:not-allowed;
+  }
+
+  .channels{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px}
+  .channels li{
+    display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 12px;
+    background:rgba(255,248,236,.9);border-radius:14px;padding:12px 16px;
+  }
+  .channels b{display:block}
+  .channels span.t{color:var(--sub);font-size:.92rem}
+
+  details{border-top:1px solid rgba(35,49,79,.12);padding:4px 0}
+  details:first-of-type{border-top:0}
+  summary{
+    cursor:pointer;list-style:none;font-weight:700;padding:12px 32px 12px 0;position:relative;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary::after{
+    content:"+";position:absolute;right:4px;top:8px;font-size:1.4rem;color:var(--green);font-weight:700;
+  }
+  details[open] summary::after{content:"−"}
+  details p{margin:0 0 12px;color:var(--navy)}
+
+  footer{
+    max-width:1120px;margin:0 auto;padding:8px 20px 48px;text-align:center;
+  }
+  footer p{margin:4px 0}
+  footer .main-note{font-weight:700}
+
+  @media (min-width:960px){
+    :root{--gap:24px}
+    .bento{grid-template-columns:repeat(12,1fr)}
+    .intro{grid-column:span 12;padding:40px}
+    .product{grid-column:span 4}
+    .half{grid-column:span 6}
+    .hero{padding:88px 0 56px}
+    .intro p{max-width:46em}
+  }
+
+  /* 카드 등장 효과: 지원 브라우저에서만, 모션 감소 설정이면 사용하지 않음.
+     미지원이거나 감소 설정이면 카드는 처음부터 그대로 보임 */
+  @media (prefers-reduced-motion:no-preference){
+    @supports (animation-timeline:view()){
+      .card{
+        animation:rise linear both;
+        animation-timeline:view();
+        animation-range:entry 0% entry 35%;
+      }
+      @keyframes rise{
+        from{opacity:0;transform:translateY(24px)}
+        to{opacity:1;transform:none}
+      }
+    }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+
+<header class="top">
+  <a class="logo" href="#top">생존<span>AI</span></a>
+  <nav aria-label="주요 메뉴">
+    <ul>
+      <li><a href="#about">소개</a></li>
+      <li><a href="#products">상품</a></li>
+      <li><a href="#sns">SNS</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <p class="eyebrow">운영 연습용 · 가상 상품</p>
+    <h1 id="hero-title">생존<span>AI</span></h1>
+    <p class="def">오늘도 육아에서 살아남은 당신을 위한, 똑똑한 생존 도구</p>
+    <p class="lead">0~24개월, 첫 육아의 하루는 길어요. 하루 흐름을 따라 작은 불편부터 덜어 드려요.</p>
+    <a class="btn-link" href="#products">상품 보기</a>
+  </section>
+
+  <div class="bento">
+    <section class="card intro" id="about" aria-labelledby="about-title">
+      <span class="bar" aria-hidden="true"></span>
+      <h2 id="about-title">생존AI를 소개해요</h2>
+      <p>생존AI는 0~24개월 아이를 처음 키우는 보호자를 위한 브랜드예요. 잠이 부족한 시기에는 작은 불편도 크게 느껴질 수 있어요. 그래서 새벽 수유, 외출, 밤 루틴처럼 하루 흐름에서 손이 덜 가는 물건을 고민해요.</p>
+      <p>'생존'은 육아의 고단함을 있는 그대로 인정하는 말이에요. 'AI'는 똑똑하게 고민해서 만든다는 뜻이고요. 🙂</p>
+      <p class="note">'AI'는 인공지능 기능이 있다는 뜻이 아니에요.</p>
+    </section>
+  </div>
+
+  <div class="section-head" id="products">
+    <h2>가상 상품 3개</h2>
+    <p>상품명은 모두 가칭이고 가격과 소재는 가상 값이에요.</p>
+  </div>
+  <div class="bento">
+    <article class="card product">
+      <span class="badge fake">가상 상품</span>
+      <h3>① 새벽 수유 보조 용품 (가칭)</h3>
+      <dl>
+        <dt>해결하는 불편</dt>
+        <dd>새벽 수유 때 불을 켜지 않고 손이 닿는 곳에 필요한 물건을 두고 싶은 불편</dd>
+        <dt>타깃 월령</dt>
+        <dd>0~6개월</dd>
+        <dt>구성·소재</dt>
+        <dd>수유 쿠션 옆 수납 트레이 1개, 손잡이 달린 소형 바구니 1개 / 폴리에스터 원단 (가상)</dd>
+        <dt>가격</dt>
+        <dd>24,000원 (가상)</dd>
+      </dl>
+      <button class="btn-off" type="button" disabled>준비 중</button>
+    </article>
+
+    <article class="card product">
+      <span class="badge fake">가상 상품</span>
+      <h3>② 외출 기저귀 파우치 (가칭)</h3>
+      <dl>
+        <dt>해결하는 불편</dt>
+        <dd>외출 가방 안에서 기저귀와 물티슈를 매번 뒤적여 찾는 불편</dd>
+        <dt>타깃 월령</dt>
+        <dd>0~24개월</dd>
+        <dt>구성·소재</dt>
+        <dd>파우치 1개, 분리형 칸막이 2개 / 방수 코팅 원단 (가상)</dd>
+        <dt>가격</dt>
+        <dd>19,000원 (가상)</dd>
+      </dl>
+      <button class="btn-off" type="button" disabled>준비 중</button>
+    </article>
+
+    <article class="card product">
+      <span class="badge fake">가상 상품</span>
+      <h3>③ 밤 루틴 카드 세트 (가칭)</h3>
+      <dl>
+        <dt>해결하는 불편</dt>
+        <dd>졸린 새벽에 밤 루틴 순서를 떠올리기 어려운 불편</dd>
+        <dt>타깃 월령</dt>
+        <dd>6~24개월</dd>
+        <dt>구성·소재</dt>
+        <dd>루틴 카드 12장, 고리 1개 / 종이 카드 (가상)</dd>
+        <dt>가격</dt>
+        <dd>9,000원 (가상)</dd>
+      </dl>
+      <button class="btn-off" type="button" disabled>준비 중</button>
+    </article>
+  </div>
+
+  <div class="bento" style="margin-top:var(--gap)">
+    <section class="card half" id="sns" aria-labelledby="sns-title">
+      <span class="bar" aria-hidden="true"></span>
+      <h2 id="sns-title">채널은 준비 중이에요</h2>
+      <p>YouTube, X, Threads, Instagram을 준비하고 있어요. 아직 열리지 않아서 연결 링크는 없어요.</p>
+      <ul class="channels">
+        <li><div><b>YouTube</b><span class="t">짧은 영상으로 만나요</span></div><span class="badge soon">준비 중</span></li>
+        <li><div><b>X</b><span class="t">짧은 소식을 전해요</span></div><span class="badge soon">준비 중</span></li>
+        <li><div><b>Threads</b><span class="t">가벼운 이야기를 나눠요</span></div><span class="badge soon">준비 중</span></li>
+        <li><div><b>Instagram</b><span class="t">장면과 소식을 모아 보여 드려요</span></div><span class="badge soon">준비 중</span></li>
+      </ul>
+    </section>
+
+    <section class="card half" id="faq" aria-labelledby="faq-title">
+      <span class="bar" aria-hidden="true"></span>
+      <h2 id="faq-title">자주 묻는 질문</h2>
+      <details>
+        <summary>생존AI는 어떤 브랜드인가요?</summary>
+        <p>0~24개월 아이를 처음 키우는 보호자를 위한 브랜드예요. 새벽 수유, 외출, 밤 루틴처럼 하루 흐름에서 손이 덜 가는 물건을 고민해요. 지금은 운영 연습 단계이고, 소개된 상품은 모두 가상이에요.</p>
+      </details>
+      <details>
+        <summary>이름에 AI가 들어가는데, AI 기능이 있나요?</summary>
+        <p>아니요, 'AI'는 인공지능 기능이 있다는 뜻이 아니에요. 똑똑하게 고민해서 만든다는 마음을 담은 이름이에요. 사이트에 소개된 상품에도 AI 기능은 들어 있지 않아요.</p>
+      </details>
+      <details>
+        <summary>소개된 상품을 실제로 살 수 있나요?</summary>
+        <p>아니요, 이 사이트는 운영 연습용이라 실제로 판매하지 않아요. 상품은 모두 가상이고 이름은 가칭이며, 가격과 소재도 가상 값이에요. 그래서 구매 버튼은 '준비 중'으로 막아 두었어요.</p>
+      </details>
+      <details>
+        <summary>SNS는 언제 열리나요?</summary>
+        <p>YouTube, X, Threads, Instagram을 준비하고 있지만 아직 열리지 않았어요. 채널이 열리면 이 사이트에서 먼저 안내해 드릴게요.</p>
+      </details>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <p class="main-note">본 사이트는 운영 연습용이며 실제 판매하지 않습니다.</p>
+</footer>
+</body>
+</html>
